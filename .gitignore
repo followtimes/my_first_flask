@@ -1,0 +1,7 @@
+*.pyc
+*.swp
+*.swo
+*.bak
+configs/local_config.py
+env
+nohup.out
