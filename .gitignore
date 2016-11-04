@@ -5,3 +5,5 @@
 configs/local_config.py
 env
 nohup.out
+*.log
+log
