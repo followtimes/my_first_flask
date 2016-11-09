@@ -6,6 +6,7 @@ from commons.heng_logger import heng_log
 
 @mod.route('/')
 def main_heng():
+    a = 1/0
     heng_log.info("in heng / func")
     return "in heng prefix"
 

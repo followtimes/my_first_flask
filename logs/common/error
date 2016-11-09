@@ -1,0 +1,52 @@
+[2016-11-09 19:29:38,776][140024681678592][ERROR][errors.py][line:30] [func:handle_error] [msg:Traceback (most recent call last):
+
+  File "/home/zhuhenghui/my_first_flask/env/lib/python2.6/site-packages/flask/app.py", line 1639, in full_dispatch_request
+    rv = self.dispatch_request()
+
+  File "/home/zhuhenghui/my_first_flask/env/lib/python2.6/site-packages/flask/app.py", line 1625, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+
+  File "/root/zhuhenghui/my_first_flask/heng/main/heng_func.py", line 9, in main_heng
+    a = 1/0
+
+ZeroDivisionError: integer division or modulo by zero
+]
+[2016-11-09 19:30:53,649][140024681678592][ERROR][errors.py][line:30] [func:handle_error] [msg:Traceback (most recent call last):
+
+  File "/home/zhuhenghui/my_first_flask/env/lib/python2.6/site-packages/flask/app.py", line 1639, in full_dispatch_request
+    rv = self.dispatch_request()
+
+  File "/home/zhuhenghui/my_first_flask/env/lib/python2.6/site-packages/flask/app.py", line 1625, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+
+  File "/root/zhuhenghui/my_first_flask/heng/main/heng_func.py", line 9, in main_heng
+    a = 1/0
+
+ZeroDivisionError: integer division or modulo by zero
+]
+[2016-11-09 19:33:27,752][140024681678592][ERROR][errors.py][line:30] [func:handle_error] [msg:Traceback (most recent call last):
+
+  File "/home/zhuhenghui/my_first_flask/env/lib/python2.6/site-packages/flask/app.py", line 1639, in full_dispatch_request
+    rv = self.dispatch_request()
+
+  File "/home/zhuhenghui/my_first_flask/env/lib/python2.6/site-packages/flask/app.py", line 1625, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+
+  File "/root/zhuhenghui/my_first_flask/heng/main/heng_func.py", line 9, in main_heng
+    a = 1/0
+
+ZeroDivisionError: integer division or modulo by zero
+]
+[2016-11-09 19:33:29,081][140024681678592][ERROR][errors.py][line:30] [func:handle_error] [msg:Traceback (most recent call last):
+
+  File "/home/zhuhenghui/my_first_flask/env/lib/python2.6/site-packages/flask/app.py", line 1639, in full_dispatch_request
+    rv = self.dispatch_request()
+
+  File "/home/zhuhenghui/my_first_flask/env/lib/python2.6/site-packages/flask/app.py", line 1625, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+
+  File "/root/zhuhenghui/my_first_flask/heng/main/heng_func.py", line 9, in main_heng
+    a = 1/0
+
+ZeroDivisionError: integer division or modulo by zero
+]

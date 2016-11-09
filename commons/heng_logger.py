@@ -44,3 +44,4 @@ def get_logger(log_name, log_dir):
 
 
 heng_log = get_logger('heng_log', 'heng')
+error_log = get_logger('error', 'common')

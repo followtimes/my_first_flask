@@ -7,6 +7,7 @@
 # followtimes
 ###
 
+from commons.components.errors import handle_error
 from flask import Flask, session, make_response
 app = Flask(__name__)
 app.config.from_object("configs.config")
@@ -31,7 +32,7 @@ def after_request(excption):
 
 @app.errorhandler(Exception)
 def handle_exc(e):
-    return make_response( "server error !!! please contact admin")
+    return handle_error(e)
 
 @app.route('/')
 def first_page():
