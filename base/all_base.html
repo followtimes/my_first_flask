@@ -1,0 +1,204 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    {% block meta %}
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% endblock %}
+
+    <title>
+        {%block title%}运维部署{%endblock%}
+    </title>
+
+    {% block css %}
+        <link href="{{url_for('static', filename='libs/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
+        <link href="{{url_for('static', filename='libs/jquery-ui-1.11.0.custom/jquery-ui.min.css')}}" rel="stylesheet">
+
+        <link href="/static/libs/AdminLTE-master/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+        <!-- Ionicons -->
+        <link href="/static/libs/AdminLTE-master/css/ionicons.min.css" rel="stylesheet" type="text/css" />
+
+        <!-- editable -->
+        <link href="/static/bower_components/x-editable/dist/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet"/>
+        <link href="/static/bower_components/x-editable/dist/jqueryui-editable/css/jqueryui-editable.css" rel="stylesheet"/>
+        <link href="/static/bower_components/x-editable/dist//jquery-editable/css/jquery-editable.css" rel="stylesheet"/>
+
+        <link href="/static/libs/HubSpot-messenger/build/css/messenger.css" rel="stylesheet"/>
+        <link href="/static/libs/HubSpot-messenger/build/css/messenger-theme-air.css" rel="stylesheet"/>
+        <link href="/static/libs/HubSpot-messenger/build/css/messenger-theme-future.css" rel="stylesheet"/>
+
+        <!-- iCheck-->
+        <link href="/static/libs/iCheck/skins/all.css" rel="stylesheet" type="text/css" />
+
+        <!-- 菊花-->
+        <link href="/static/libs/waitMe/waitMe.min.css" rel="stylesheet"/>
+
+        <!-- 两边select-->
+        <link rel="stylesheet" type="text/css" href="/static/bower_components/bootstrap-duallistbox/src/bootstrap-duallistbox.css">
+
+        <!-- select2-->
+        <link rel="stylesheet" type="text/css" href="/static/libs/select2-3.5.0/select2-bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="/static/libs/select2-3.5.0/select2.css">
+
+        <!-- process-->
+        <link rel="stylesheet" type="text/css" href="/static/libs/progress.js-0.1.0/src/progressjs.css">
+
+        <!-- bootgrid-->
+        <link rel="stylesheet" type="text/css" href="/static/bower_components/jquery-bootgrid/build/jquery.bootgrid.css">
+
+        <!-- Theme style -->
+        <link href="/static/libs/AdminLTE-master/css/AdminLTE.css" rel="stylesheet" type="text/css" />
+
+        <!-- jBox -->
+        <link href="/static/libs/jBox/Source/jBox.css" rel="stylesheet" type="text/css" />
+
+        <!-- dataTables -->
+        <link href="/static/libs/AdminLTE-master/css/datatables/dataTables.bootstrap.css" rel="stylesheet" type="text/css" />
+
+        <!-- datetimepicker-->
+        <link rel="stylesheet" href="/static/bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" />
+
+        <!-- TimeCircles -->
+        <link rel="stylesheet" href="/static/libs/TimeCircles/inc/TimeCircles.css" />
+
+        <link rel="stylesheet" href="/static/libs/poshytip/src/tip-twitter/tip-twitter.css" />
+
+
+    {% endblock %}
+
+    {% block head_js %}
+
+
+        <script src="{{url_for('static', filename='libs/js/jquery-2.1.1.min.js')}}"></script>
+        <script src="{{url_for('static', filename='libs/js/bootstrap-tooltip.js')}}"></script>
+        <script src="{{url_for('static', filename='libs/js/bootstrap-popover.js')}}"></script>
+        <script src="{{url_for('static', filename='libs/js/bootstrap-affix.js')}}"></script>
+        <script src="{{url_for('static', filename='libs/bootstrap/js/bootstrap.min.js')}}"></script>
+        <script src="{{url_for('static', filename='libs/jquery-ui-1.11.0.custom/jquery-ui.min.js')}}"></script>
+
+        <!-- AdminLTE 框架 -->
+        <script src="/static/libs/AdminLTE-master/js/AdminLTE/app.js" type="text/javascript"></script>
+
+        <!-- editable -->
+        <script src="/static/bower_components/x-editable/dist/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
+        <script src="/static/bower_components/x-editable/dist/jqueryui-editable/js/jqueryui-editable.min.js"></script>
+
+        <!-- jQuery UI 1.10.3 -->
+        <script src="/static/libs/AdminLTE-master/js/jquery-ui-1.10.3.min.js" type="text/javascript"></script>
+
+        <!-- Bootstrap WYSIHTML5 -->
+        <script src="/static/libs/AdminLTE-master/js/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js" type="text/javascript"></script>
+        <!-- iCheck -->
+        <script src="/static/libs/iCheck/icheck.min.js" type="text/javascript"></script>
+
+        <script src="/static/libs/HubSpot-messenger/build/js/messenger.min.js" type="text/javascript"></script>
+
+        <script src="/static/libs/waitMe/waitMe.min.js" type="text/javascript"></script>
+
+
+        <!-- 两边select-->
+        <script src="/static/bower_components/bootstrap-duallistbox/dist/jquery.bootstrap-duallistbox.js"></script>
+
+        <!-- select2-->
+        <script src="/static/libs/select2-3.5.0/select2.min.js"></script>
+        <script src="/static/libs/select2-3.5.0/select2_locale_zh-CN.js"></script>
+
+        <!-- process-->
+        <script src="/static/libs/progress.js-0.1.0/src/progress.js"></script>
+
+        <!-- bootgrid-->
+        <script src="/static/bower_components/jquery-bootgrid/build/jquery.bootgrid.js"></script>
+
+        <!-- stickUp -->
+        <script src="/static/libs/stickUp/stickUp.js"></script>
+
+        <!-- jBox -->
+        <script src="/static/libs/jBox/Source/jBox.min.js"></script>
+
+        <!-- dataTables -->
+        <script href="/static/libs/AdminLTE-master/js/plugins/datatables/jquery.dataTables.js"></script>
+        <script href="/static/libs/AdminLTE-master/js/plugins/datatables/dataTables.bootstrap.js"></script>
+
+        <!-- datetimepicker-->
+        <script type="text/javascript" src="/static/bower_components/moment/min/moment.min.js"></script>
+        <script type="text/javascript" src="/static/bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+
+        <!-- TimeCircles -->
+        <script type="text/javascript" src="/static/libs/TimeCircles/inc/TimeCircles.js"></script>
+
+        <script type="text/javascript" src="/static/libs/poshytip/src/jquery.poshytip.js"></script>
+
+    {% endblock %}
+
+    {% block more_head %}
+    {% endblock %}
+</head>
+
+{%block body_head%}
+<body class="skin-blue">
+{%endblock%}
+
+    {% block more_css%} {% endblock %}
+    {% block more_js%} {% endblock %}
+    {% block nav%} {% endblock %}
+
+    {% block nav_js%}
+    {% endblock %}
+
+    {% block container_outer %}
+    <div id="container" class="container" style="margin-top: 20px; min-height:989; width=100%">
+        {% block container %} {% endblock %}
+    </div>
+    {% endblock %}
+</body>
+
+
+{% block body_foot%}
+    <script src="/static/xbox_libs/xbox-alert.js"></script>
+    <script src="/static/xbox_libs/xbox-confirm.js"></script>
+    <script src="/static/xbox_libs/xbox-ajax.js"></script>
+    <script src="/static/xbox_libs/xbox-base.js"></script>
+
+    <!-- xbox tree的插件-->
+    <script src="/static/xbox_libs/xbox-tree.js?v=1.0.6"></script>
+    <script src="/static/xbox_libs/xbox-tree/jstree/jquery.jstree.js"></script>
+    <script src="/static/xbox_libs/xbox-tree/jquery-cookie/jquery.cookie.js" type="text/javascript"></script>
+    <script src="/static/xbox_libs/xbox-tree/purl/purl.js" type="text/javascript"></script>
+
+    <script>
+        $(function() {
+
+            $.fn.editable.defaults.mode = 'inline';
+
+            $('.fa-question-circle[data-toggle="popover"]').click(function(){
+                var $this = $(this);
+                $this.popover({
+                    'html': 'true',
+                });
+                $this.popover('show');
+                setTimeout(function() {$this.popover('hide')},5000);
+            })
+
+            $('[data-toggle="popover"]').not(".fa-question-circle").popover({trigger:'hover'});
+
+            $('[data-toggle="poshytip"]').poshytip({
+                className: 'tip-twitter',
+                offsetX: 0,
+                offsetY: 5,
+                allowTipHover: false,
+                showOn: 'focus',
+                alignTo: 'target',
+                alignX: 'center',
+                alignY: 'bottom',
+                offsetX: 5,
+                showTimeout: 100
+            })
+
+        });
+    </script>
+ {% endblock %}
+
+<script type="text/javascript" src="/static/libs/scrolltotop/arrow79.js"></script>
+
+</html>
