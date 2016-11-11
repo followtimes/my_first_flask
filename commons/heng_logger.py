@@ -43,5 +43,8 @@ def get_logger(log_name, log_dir):
     return log
 
 
-heng_log = get_logger('heng_log', 'heng')
+debug_log = get_logger('debug', 'debug')
+heng_log  = get_logger('heng_log', 'heng')
 error_log = get_logger('error', 'common')
+mail_log  = get_logger('mail', 'mail') 
+db_log    = get_logger('db_log', 'db')
