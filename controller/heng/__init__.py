@@ -5,4 +5,4 @@ from flask import Blueprint
 
 mod = Blueprint('heng', __name__, url_prefix='/heng')
 
-from .main import heng_func
+from .view import heng_main

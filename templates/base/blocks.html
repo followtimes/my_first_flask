@@ -2,64 +2,15 @@
 <header class="header">
   <a href="/" class="logo">
       <!-- Add the class icon to your logo image or logo icon to add the margining -->
-      运维部署
+      owner-control
       <sup style="color:red">beta</sup>
   </a>
   <!-- Header Navbar: style can be found in header.less -->
   <nav class="navbar navbar-static-top" role="navigation">
       <ul class="nav navbar-nav">
                 <li>
-                    <a href="/tasks/index">
-                        <span>查看任务</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="/services/index">
-                        <span>发起任务</span>
-                    </a>
-                </li>
-
-                <li>
-                    <a href="/services/rollback/index">
-                        </i> <span>回滚任务</span>
-                    </a>
-                </li>
-                <li class="">
-                    <a href="/tasks/clone/index">
-                        <span>clone机器</span>
-                    </a>
-                </li>
-
-                <li class="">
-                    <a href="/services/clone/index">
-                        <span>clone job</span>
-                    </a>
-                </li>
-
-                <li class="">
-                    <a href="/services/clone/other/pdl/index">
-                        <span>跨产品线的clone</span>
-                    </a>
-                </li>
-
-                <li>
                     <a href="http://xbox.pt.xiaomi.com" target="_blank">
                         <span>xbox首页</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="http://xbox.pt.xiaomi.com/wiki/index/aesir-新部署系统/部署自动化使用指南.md" target="_blank">
-                        <span>wiki</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="https://www.mioffice.cn/community/topic/运维系统吐槽" target="_blank">
-                      <span><font color='#F7BEBE'>吐槽</font></span>
-                    </a>
-                </li>
-                <li>
-                    <a href="http://jira.n.xiaomi.com/browse/XBOX" target="_blank">
-                      <span><font color="#F7BEBE">需求反馈</font></span>
                     </a>
                 </li>
       </ul>
@@ -116,7 +67,7 @@
                               <a href="http://xbox.pt.xiaomi.com/tree/user/index" target="_blank" class="btn btn-default btn-flat">个人资料</a>
                           </div>
                           <div class="pull-right">
-                              <a href="/logout" class="btn btn-default btn-flat">Sign out</a>
+                              <a href="/login/out" class="btn btn-default btn-flat">Sign out</a>
                           </div>
                       </li>
                   </ul>
@@ -126,33 +77,4 @@
   </nav>
 </header>
 
-<script>
-  $(function(){
-      var runningUrl = "/tasks/my?page=1&per_page_num=5000&task_status_type=running";
-      jQuery.ajax({
-          url: runningUrl,
-          dataType: 'json',
-          success: function(tasksInfo) {
-              var tasks = tasksInfo['tasks'];
-              var length = tasks.length;
-              if (length > 0) {
-                  xboxAlert("你当前正在运行的任务数有: "+length);
-                  for (index in tasks) {
-                    var task = tasks[index];
-                    var li = "<li>";
-                    li  += ' <a href="#">';
-                    li  += task['service_name'];
-                    li  += '<small class="pull-right">'+task['launch_time']+task['state_describe']+'</small>';
-                    li  += ' </a>';
-                    li  += "</li>";
-                    $("#li-display-tasks").append(li);
-                  }
-              };
-              $(".nav-tasks-cnt").html(length);
-          },
-      });
-
-  });
-
-</script>
 {%- endmacro %}

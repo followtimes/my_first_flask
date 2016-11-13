@@ -2,8 +2,8 @@
 *.swp
 *.swo
 *.bak
+*.log
 configs/local_config.py
 env
 nohup.out
-*.log
 logs

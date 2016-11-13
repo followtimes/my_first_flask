@@ -14,3 +14,6 @@ def api_main():
 def api_test():
     return make_response("in api test func")
 
+@mod.route('/test/prefix')
+def api_test_prefix():
+    return make_response("in api test prefix func")
