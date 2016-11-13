@@ -1,0 +1,15 @@
+{% extends "/base/heng_base.html" %}
+{% block title %}heng-index{% endblock %}
+{% block head %}
+    <title>test</title>
+    {{ super() }}
+    <style type="text/css">
+        .important { color: #336699; }
+    </style>
+{% endblock %}
+{% block content %}
+    <h1>Index</h1>
+    <p class="important">
+      Welcome to {{ user_name }} awesome homepage.
+    </p>
+{% endblock %}

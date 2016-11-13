@@ -1,0 +1,558 @@
+{% extends "/base/all_nav_tree_base.html" %}
+
+
+{%- macro macro_js() -%}
+    <script src="/static/services/build_deploy.js?v=1.0.48" type="text/javascript"></script>
+    <script src="/static/services/ZeroClipboard.js"></script>
+{%- endmacro %}
+
+{% block rightsideContainer %}
+<style>
+    .popover {
+        max-width:800px;
+    }
+</style>
+    {{ macro_service_info() }}
+    {{ macro_badfriggalistinfo() }}
+    {{ macro_services() }}
+
+    {{ macro_js() }}
+    {{ macro_hide() }}
+{% endblock %}
+
+{%- macro macro_service_info() -%}
+ <div class="col-md-12 no-padding" id="box-serviceInfo" style="display:none">
+    <!-- Default box -->
+    <div class="box box-solid ">
+        <div class="">
+            <div class="col-md-12 row" style="margin-top:10px">
+                <!-- ><h5 class="box-title pull-left" id="title-service_name"></h5> -->
+                <button class="btn btn-default btn-sm pull-left col-sm-1 col-sm-offset-1 close-serviceInfo"><i class="fa fa-fw fa-chevron-left"></i> 返回</button>
+                <button class="btn btn-default btn-sm pull-right close-serviceInfo"><i class="fa fa-times"></i></button>
+            </div>
+        </div>
+        <div class="box-body">
+            <form class="form-horizontal" role="form" id="form-serviceInfo">
+                {% set labelSize=" col-sm-2 " %}
+                {% set offLabelSize="col-sm-offset-2 col-sm-10 " %}
+                <div class="form-group">
+                    <label for="tag-service" class="{{labelSize}} control-label">service*
+                        <i class="fa fa-fw fa-question-circle"
+                            data-toggle="popover"
+                            data-placement="left"
+                            data-title="服务名 [必填]"
+                            data-content="需尽量少变更">
+                        </i>
+                    </label>
+                    <div class="col-sm-10">
+                        <a href="#" class="editable" id="tag-service" data-type="text" ></a>
+                    </div>
+                </div>
+
+                <div class="panel-group">  
+                    <div class="panel">  
+                        <div class="panel-heading">  
+                            <h4 class="panel-title  ">
+                                <div class="{{offLabelSize}}">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse-tags" style="padding-left: 12px;">
+                                        <span class="glyphicon glyphicon-plus-sign">高级tags</span>
+                                    </a>
+                                </div>
+                            </h4>
+                        </div>  
+
+                        <!-- 初始处于展开状态-->  
+                        <div id="collapse-tags"  class="panel-collapse collapse">  
+                            <div class="panel-body">  
+                                    <!-- tag的详细信息-->  
+                                    <div class="form-group">
+                                        <label for="tag-job" class="{{labelSize}} control-label">job
+                                            <i class="fa fa-fw fa-question-circle" 
+                                                data-toggle="popover" 
+                                                data-placement="left"
+                                                data-title="job [必填]" 
+                                                data-content="服务运行的最小单位(默认为service)" >
+                                            </i>
+                                        </label>
+                                        <div class="col-sm-10">
+                                            <a href="#" class="editable" id="tag-job" data-type="text" ></a>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="tag-servicegroup" class="{{labelSize}} control-label">servicegroup
+                                            <i class="fa fa-fw fa-question-circle"
+                                                data-toggle="popover" 
+                                                data-placement="left"
+                                                data-title="服务组 " data-content="用于标识一组服务的集合"
+                                                >
+                                            </i>
+                                        </label>
+                                        <div class="col-sm-10">
+                                            <a href="#" class="editable" id="tag-servicegroup" data-type="text"></a>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="tag-jobgroup" class="{{labelSize}} control-label">jobgroup
+                                            <i class="fa fa-fw fa-question-circle"
+                                                data-toggle="popover" 
+                                                data-placement="left"
+                                                data-title="job组"
+                                                data-content="一组job的集合"
+                                                >
+                                            </i>
+                                        </label>
+                                        <div class="col-sm-10">
+                                            <a href="#" class="editable" id="tag-jobgroup" data-type="text" ></a>
+                                        </div>
+                                    </div>
+                            </div>  
+                        </div>  
+                    </div>  
+                </div>  
+
+
+                <div class="form-group">
+                    <label for="tag-cluster" class="{{labelSize}} control-label">部署环境
+                        <i class="fa fa-fw fa-question-circle"
+                                data-toggle="popover" 
+                                data-placement="left"
+                                data-title="部署环境 [必选]" 
+                                data-content="请选择对应机房的部署环境"
+                            >
+                        </i>
+                    </label>
+                    <div class="col-sm-10">
+                        <a href="#" class="editable" id="tag-cluster" data-type="select" ></a>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="code_url" class="{{labelSize}} control-label">代码地址*
+                        <i class="fa fa-fw fa-question-circle"
+                                data-toggle="popover" 
+                                data-placement="left"
+                                data-title="代码地址 [必填]"
+                                data-content="git或svn地址"
+                            >
+                        </i>
+                    </label>
+                    <div class="col-sm-10">
+                        <a href="#" class="editable" id="code_url" data-type="text" ></a>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="account" class="{{labelSize}} control-label">部署账号*
+                        <i class="fa fa-fw fa-question-circle"
+                                data-toggle="popover" 
+                                data-placement="left"
+                                data-title="部署账号 [必填]" 
+                                data-content="默认为root, 建议都以work进行运行。<br>以后将收回root权限"
+                            >
+                        </i>
+                    </label>
+                    <div class="col-sm-10">
+                        <a href="#" class="editable" id="account" data-type="text" ></a>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="deploy_path" class="{{labelSize}} control-label">部署路径*
+                        <i class="fa fa-fw fa-question-circle"
+                                data-toggle="popover" 
+                                data-placement="left"
+                                data-title="部署路径 [必填]"
+                                data-content="部署的具体路径"
+                            >
+                        </i>
+                    </label>
+                    <div class="col-sm-10">
+                        <a href="#" class="editable" id="deploy_path" data-type="text" ></a>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="action" class="{{labelSize}} control-label">启停动作*
+                        <i class="fa fa-fw fa-question-circle"
+                                data-toggle="popover" 
+                                data-placement="left"
+                                data-title="启停动作 [必选]" 
+                                data-content="
+                                    restart      :stop服务->清理目标路径下的文件->重新生成目录路径下的文件->启动服务<br>
+                                    reload       :更新文件（不清理目标路径下的旧文件，只更新包里有变动的文件）->执行reload命令（不重启服务）<br>
+                                    update       :更新文件（不清理目标路径下的旧文件，只更新包里有变动的文件）（不重启服务）<br>
+                                    clean_update :清理目标路径下的文件->重新生成目录路径下的文件（不重启服务）<br>
+                                    "
+                            >
+                        </i>
+                    </label>
+                    <div class="col-sm-10">
+                        <a href="#" class="editable" id="action" data-type="select" ></a>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="notice" class="{{labelSize}} control-label">备注*
+                        <i class="fa fa-fw fa-question-circle"
+                                data-toggle="popover" 
+                                data-placement="left"
+                                data-title="任务备注信息 [非必填]"
+                                data-content="为该部署任务填写备注信息，让发起者快速识别该任务的部署功能，默认为Empty"
+                            >
+                        </i>
+                    </label>
+                    <div class="col-sm-10">
+                        <a href="#" class="editable" id="notice" data-type="text" ></a>
+                    </div>
+                </div>
+
+                <div class="panel-group">  
+                    <div class="panel">  
+                        <div class="panel-heading">  
+                            <h4 class="panel-title  ">
+                                <div class="{{offLabelSize}}">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse-advanced" style="padding-left: 12px;">
+                                        <span class="glyphicon glyphicon-plus-sign">高级选项</span>
+                                    </a>
+                                </div>
+                            </h4>
+                        </div>  
+
+                        <!-- 初始处于关闭状态-->  
+                        <div id="collapse-advanced"  class="panel-collapse collapse">  
+                            <div class="panel-body">  
+                                <div class="form-group">
+                                    <label for="docker" class="{{labelSize}} control-label">是否启用docker
+                                        <i class="fa fa-fw fa-question-circle"
+                                                data-toggle="popover" 
+                                                data-placement="left"
+                                                data-title="docker [必选]"
+                                                data-content="默认不启用"
+                                            >
+                                        </i>
+                                    </label>
+                                    <div class="col-sm-10">
+                                        <a href="#" class="editable" id="docker" data-type="select" ></a>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="rely_on_cluster" class="{{labelSize}} control-label">是否区分cluster部署
+                                        <i class="fa fa-fw fa-question-circle"
+                                                data-toggle="popover" 
+                                                data-placement="left"
+                                                data-title="是否区分cluster部署[必选]"
+                                                data-content="默认区分，若不区分，则一次编译生成的包可以部署到多个环境，避免每个环境都需要进行编译"
+                                            >
+                                        </i>
+                                    </label>
+                                    <div class="col-sm-10">
+                                        <a href="#" class="editable" id="rely_on_cluster" data-type="select" ></a>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="version_origin" class="{{labelSize}} control-label">版本源*
+                                        <i class="fa fa-fw fa-question-circle"
+                                                data-toggle="popover" 
+                                                data-placement="left"
+                                                data-title="获取版本的方式"
+                                                data-content="默认从分支获取版本列表。tag方式下，代码分支将不生效"
+                                            >
+                                        </i>
+                                    </label>
+                                    <div class="col-sm-10">
+                                        <a href="#" class="editable" id="version_origin" data-type="select" ></a>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="branch" class="{{labelSize}} control-label">代码分支*
+                                        <i class="fa fa-fw fa-question-circle"
+                                                data-toggle="popover" 
+                                                data-placement="left"
+                                                data-title="代码分支" 
+                                                data-content="git主干为master<br>svn主干为trunk"
+                                            >
+                                        </i>
+                                    </label>
+                                    <div class="col-sm-10">
+                                        <a href="#" class="editable" id="branch" data-type="text" ></a>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="relative_path" class="{{labelSize}} control-label">相对路径
+                                        <i class="fa fa-fw fa-question-circle"
+                                                data-toggle="popover" 
+                                                data-placement="left"
+                                                data-title="相对路径"
+                                                data-content="代码编译时需进入的相对目录(默认为空)"
+                                            >
+                                        </i>
+                                    </label>
+                                    <div class="col-sm-10">
+                                        <a href="#" class="editable" id="relative_path" data-type="text" ></a>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="concurrent" class="{{labelSize}} control-label">并发度
+                                        <i class="fa fa-fw fa-question-circle"
+                                                data-toggle="popover" 
+                                                data-placement="left"
+                                                data-title="部署并发机器数"
+                                                data-content="除第一台机器外，其余机器(n-1)可以一次并发部署多台，但并发度不能大于(n-1)/2。（注：因当前odin无机器建集群，所以并发度最大为3）"
+                                            >
+                                        </i>
+                                    </label>
+                                    <div class="col-sm-10">
+                                        <a href="#" class="editable" id="concurrent" data-type="text" ></a>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="sleep" class="{{labelSize}} control-label">sleep
+                                        <i class="fa fa-fw fa-question-circle"
+                                                data-toggle="popover" 
+                                                data-placement="left"
+                                                data-title="sleep时间"
+                                                data-content="每执行完一批次机器（并发度）sleep的时间（s)，默认为0"
+                                            >
+                                        </i>
+                                    </label>
+                                    <div class="col-sm-10">
+                                        <a href="#" class="editable" id="sleep" data-type="text" ></a>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="step" class="{{labelSize}} control-label">暂停step
+                                        <i class="fa fa-fw fa-question-circle"
+                                                data-toggle="popover" 
+                                                data-placement="left"
+                                                data-title="暂停step" 
+                                                data-content="每执行（n）个批次（即n*并发度机器）暂停，默认n=0（即不暂停）:<br>
+                                                    0:不暂停<br>
+                                                    1:每执行1批次(并发度)暂停<br>
+                                                    2:每执行2批次(并发度)暂停<br>
+                                                    n:每执行n批次(并发度)暂停<br>
+                                                    "
+                                            >
+                                        </i>
+                                    </label>
+                                    <div class="col-sm-10">
+                                        <a href="#" class="editable" id="step" data-type="text" ></a>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="template_values" class="{{labelSize}} control-label">模板值
+                                        <i class="fa fa-fw fa-question-circle"
+                                                data-toggle="popover" 
+                                                data-placement="left"
+                                                data-title="模板值"
+                                                data-content="部署模板中的变量替换: key=value"
+                                            >
+                                        </i>
+                                    </label>
+                                    <div class="col-sm-10">
+                                        <a href="#" class="editable" id="template_values" data-type="textarea" ></a>
+                                    </div>
+                                </div>
+
+                            </div>  
+                        </div>  
+                    </div>  
+                </div>  
+                <div class="form-group" id="div-service-submit">
+                    <div class="{{offLabelSize}}  col-sm-10">
+                        <button type="submit" class="col-sm-12 btn btn-default" id="btn-service-submit">提交</button>
+                    </div>
+                </div>
+
+            </form><!-- /.form -->
+        </div><!-- /.box-body <div class="loading-img"></div>--> 
+    </div><!-- /.box -->
+</div><!-- /.col -->
+{%- endmacro %}
+
+{%- macro macro_badfriggalistinfo() -%}
+ <div class="box-body" id="box-badfriggalistInfo" style="display:none">
+    <div class="col-md-12 col-sm-12">
+        <div class="">
+            <div class="col-md-12 " style="margin-top:10px">
+                <button class="btn btn-default btn-sm col-sm-1 close-badfriggalistInfo"><i class="fa fa-fw fa-chevron-left"></i> 返回</button>
+                <button class="btn btn-default btn-sm col-sm-1 " id="badfriggalistInfo_copy"><i class="fa fa-fw "></i>复制选中机器</button>
+            </div>
+        </div>
+        <div class="col-sm-12 table-responsive">
+            <!-- THE MESSAGES -->
+            <table class="table " id="badfriggalist_table">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th >frigga最新版本: 1.6.28 </th>
+                        <th >当前节点:{{cluster}}</th>
+                    </tr>
+                    <tr>
+                        <th>
+                            <label style="margin-right: 10px;">
+                                <input type="checkbox" id="check-all-frigga"/>
+                            </label>
+                        </th>
+                        <th >frigga异常机器列表</th>
+                        <th >frigga版本号</th>
+                    </tr>
+                </thead>
+                <tbody id="bad_frigga_list_body" >
+                </tbody>
+            </table>
+        </div><!-- /.table-responsive -->
+    </div><!-- /.box -->
+</div><!-- /.col -->
+{%- endmacro %}
+
+{%- macro macro_services() -%}
+ <div class="box-body" id="services-box">
+    <div class="col-md-12 col-sm-12">
+        <div class="row pad">
+            <div class="col-sm-6">
+                <!-- Action button -->
+                <button type="button" class="btn btn-default btn-sm btn-flat" id="btn-creatService">新增</button>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-default btn-sm btn-flat dropdown-toggle" data-toggle="dropdown">
+                        操作<span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="#" id="btn-deleteServices">删除</a></li>
+                    </ul>
+                </div>
+                <div class="btn-group">
+                    <button type="button" id="page-max-num" class="btn btn-default btn-sm btn-flat dropdown-toggle" data-toggle="dropdown">
+                        显示10条<span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li class="page-num-control active" num=10 ><a>显示10条</a></li>
+                        <li class="page-num-control" num=20><a >显示20条</a></li>
+                        <li class="page-num-control" num=30><a >显示30条</a></li>
+                        <li class="page-num-control" num=100><a >显示100条</a></li>
+                        <li class="page-num-control" num=300><a >显示300条</a></li>
+                        <li class="page-num-control" num=500><a >显示500条</a></li>
+                        <li class="page-num-control" num=1000><a >显示1000条</a></li>
+                    </ul>
+                </div>
+                <button type="button" class="btn btn-default btn-sm btn-flat" id="bad_frigga_list">frigga异常机器查看</button>
+
+            </div>
+            <div class="col-sm-6 search-form">
+                <div id="form-search" class="text-right row">
+                    <div class="input-group col-sm-3 pull-left">
+                        <select class="form-control" style="height:30px" id="selct-filter-env">
+                            <option value="">过滤环境</option>
+                            {% for env in  env_list  %}
+                                <option value="{{env}}">{{env}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="input-group col-sm-9 pull-right">
+                        <input type="text" class="form-control input-sm" id="input-search" 
+                            data-toggle="poshytip"
+                            data-showOn="focus"
+                            title="支持正则匹配, 可以搜索job和代码地址"
+                            placeholder="搜索范围{{cluster}},支持正则和空格: cluster.*lg或'cluster lg'">
+                        <div class="input-group-btn">
+                            <button id='btn-search' class="btn btn-sm btn-primary"><i class="fa fa-search"></i></button>
+                        </div>
+                    </div>
+                </div >
+            </div>
+        </div><!-- /.row -->
+
+        <div class="table-responsive">
+            <!-- THE MESSAGES -->
+            <table class="table table-mailbox table-hover" id="table-services">
+                <thead>
+                    <tr>
+                        <th>
+                            <label style="margin-right: 10px;">
+                                <input type="checkbox" id="check-all"/>
+                            </label>
+                        </th>
+                        <th>
+                            <button type="button" class="btn btn-default btn-sm btn-flat" id="btn-launchService" style="">批量发起</button>
+                        </th>
+                        <th >服务列表</th>
+                        <th class="text-right">实例统计</th>
+                    </tr>
+                </thead>
+                <tbody id="services_info" >
+                </tbody>
+            </table>
+        </div><!-- /.table-responsive -->
+    </div><!-- /.col (RIGHT) -->
+</div><!-- /.box-body -->
+{%- endmacro %}
+
+{%- macro macro_hide() -%}
+<div style="display:none">
+    <a id="hide-cluster">{{cluster}}</a>
+    <a id="frigga_last_version">1.6.28</a>
+    <a id="hide-envs">{{envs}}</a>
+</div>
+<div class="col-md-12" style="display:none; min-height:1900px" id="hide-instances">
+    <!-- Info box -->
+    <div class="box box-info">
+        <div class="box-header">
+            <h3 class="box-title">实例详情</h3>
+            <div class="box-tools ">
+                <div class="label bg-aqua pull-right" id="hide-instance-service-name"></div>
+            </div>
+
+        </div>
+        <div class="box-body">
+            <div class="no-padding">
+                <div class="row pad">
+                    <div class="col-sm-6">
+                        <label style="margin-right: 10px;">
+                            <input type="checkbox" id="check-all-god"/>
+                        </label>
+                        <button class="god btn btn-default btn-sm btn-flat padding" operate='status' alert='false'><a href="#" >god status</a></button>
+                        <button class="god btn btn-default btn-sm btn-flat padding" operate='start' alert='true'><a href="#" >god start</a></button>
+                        <button class="god btn btn-default btn-sm btn-flat padding" operate='stop' alert='true'><a href="#" >god stop</a></button>
+                        <button class="btn btn-default btn-sm btn-flat padding" id="copy-button" title="复制选中机器" data-clipboard-text="static copy" ><a href="#">copy</a></button>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-default btn-sm btn-flat dropdown-toggle" data-toggle="dropdown">
+                                操作<span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu">
+                                <li class="god" operate='restart' alert='true'><a href="#" ><i class="fa fa-repeat"></i>god restart</a></li>
+                                <li class="god" operate='nuke' alert='true'><a href="#" ><i class="fa  fa-times"></i>god nuke</a></li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div><!-- /.row -->
+                <table class="table table-hover" id="hide-table-instance-detail">
+                    <thead>
+                        <tr>
+                            <th class="small-col" style="width: 10px;"></th>
+                            <th>机器名</th>
+                            <th> 版本 </th>
+                            <th> 状态 </th>
+                            <th> 数据获取时间 </th>
+                            <th>最新结果(<code id="display-god-operate"></code>)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div><!-- /.box-body -->
+        <div class="box-footer">
+        </div><!-- /.box-footer-->
+    </div><!-- /.box -->
+</div><!-- /.col -->
+{%- endmacro %}
